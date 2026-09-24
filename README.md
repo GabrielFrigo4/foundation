@@ -6,7 +6,7 @@
 <div align="center">
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Standards: POSIX.1](https://img.shields.io/badge/Standards-POSIX.1-success.svg)](https://pubs.opengroup.org/onlinepubs/9699919799/)
+[![Standards: POSIX.1](https://img.shields.io/badge/Standards-POSIX.1-success.svg?logo=ieee&logoColor=white)](https://pubs.opengroup.org/onlinepubs/9699919799/)
 [![CI](https://github.com/GabrielFrigo4/foundation/actions/workflows/submodules.yml/badge.svg)](https://github.com/GabrielFrigo4/foundation/actions/workflows/submodules.yml)
 [![Ecosystem](https://img.shields.io/badge/Ecosystem-Federated_Hub-purple.svg)](https://github.com/GabrielFrigo4)
 
