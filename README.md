@@ -1,4 +1,4 @@
-# ⚡ Core Hub
+# ⚡ Foundation Hub
 
 > **Orquestrador Federado de Utilitários de Sistema, Preservação Técnica & Texto Puro**<br />
 > _O pilar fundacional do ecossistema de engenharia de Gabriel Frigo._
@@ -7,7 +7,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Standards: POSIX.1](https://img.shields.io/badge/Standards-POSIX.1-success.svg)](https://pubs.opengroup.org/onlinepubs/9699919799/)
-[![CI](https://github.com/GabrielFrigo4/core/actions/workflows/submodules.yml/badge.svg)](https://github.com/GabrielFrigo4/core/actions/workflows/submodules.yml)
+[![CI](https://github.com/GabrielFrigo4/foundation/actions/workflows/submodules.yml/badge.svg)](https://github.com/GabrielFrigo4/foundation/actions/workflows/submodules.yml)
 [![Ecosystem](https://img.shields.io/badge/Ecosystem-Federated_Hub-purple.svg)](https://github.com/GabrielFrigo4)
 
 </div>
@@ -16,25 +16,21 @@
 
 ## 📖 Visão Geral
 
-O repositório **Core** é o ponto de entrada canônico para as ferramentas e referências essenciais do ecossistema. Inspirado na simplicidade atemporal do Unix, ele reúne três pilares complementares de software e conhecimento:
+O repositório **Foundation** é o ponto de entrada canônico para as ferramentas e referências essenciais do ecossistema. Inspirado na simplicidade atemporal do Unix, ele reúne três pilares complementares de software e conhecimento:
 
 ```mermaid
 flowchart TD
-    subgraph CH ["⚡ Core Hub"]
-        direction TB
-        SU["🛠️ Sysutils<br/>Utilitários C99 / POSIX.1 • Controle Rígido via wheel<br/>rtdo • rtgo"]
-        LB["📚 Library<br/>Acervo Curado de Ciência da Computação, Matemática & Sistemas<br/>Preservação Digital Git + Releases"]
-        RT["📝 Raw Text<br/>Manifestos, Handbooks, Templates & Conhecimento Estruturado"]
+    subgraph FH ["⚡ Foundation Hub"]
+        direction LR
+        SU["🛠️ Sysutils<br/>Utilitários C99 / POSIX.1<br/>Controle via wheel (rtdo / rtgo)"]
+        LB["📚 Library<br/>Acervo Curado CS & Math<br/>Preservação Digital Git + Releases"]
+        RT["📝 Raw Text<br/>Manifestos, Handbooks<br/>Templates & Conhecimento Puro"]
     end
-
-    CH --> SU
-    CH --> LB
-    CH --> RT
 ```
 
 ---
 
-## 🧩 Os Componentes do Core
+## 🧩 Os Componentes do Foundation
 
 | Componente                    | Foco & Responsabilidade                                                        | Tecnologias Centrais    | Repositório Remoto                                                        |
 | :---------------------------- | :----------------------------------------------------------------------------- | :---------------------- | :------------------------------------------------------------------------ |
@@ -48,12 +44,12 @@ flowchart TD
 
 ```sh
 # Clonagem completa com todos os submódulos
-git clone --recursive "https://github.com/GabrielFrigo4/core.git"
-cd core
+git clone --recursive "https://github.com/GabrielFrigo4/foundation.git"
+cd foundation
 
 # Ou clonagem simples seguida de inicialização
-git clone "https://github.com/GabrielFrigo4/core.git"
-cd core
+git clone "https://github.com/GabrielFrigo4/foundation.git"
+cd foundation
 make clone
 ```
 

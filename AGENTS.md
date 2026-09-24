@@ -1,12 +1,12 @@
-# ⚡ Core — AI Agent Briefing
+# ⚡ Foundation — AI Agent Briefing
 
-> Este é o **repositório hub** do ecossistema **Core** de Gabriel Frigo. Ele orquestra os repositórios fundamentais de utilitários POSIX de baixo nível, acervo digital de ciência da computação e bases textuais puras.
+> Este é o **repositório hub** do ecossistema **Foundation** de Gabriel Frigo. Ele orquestra os repositórios fundamentais de utilitários POSIX de baixo nível, acervo digital de ciência da computação e bases textuais puras.
 
 ---
 
 ## 🧭 1. Identidade e Papel
 
-O **Core** é o **meta-repositório e ponto de entrada** para a base estável do ecossistema. Ele centraliza a governança, integridade de submódulos e orquestração de testes cruzados dos três pilares fundamentais:
+O **Foundation** é o **meta-repositório e ponto de entrada** para a base estável do ecossistema. Ele centraliza a governança, integridade de submódulos e orquestração de testes cruzados dos três pilares fundamentais:
 
 | Componente                  | Papel                                                                                                | Repositório Remoto         |
 | :-------------------------- | :--------------------------------------------------------------------------------------------------- | :------------------------- |
@@ -29,7 +29,7 @@ O **Core** é o **meta-repositório e ponto de entrada** para a base estável do
 ## 🌲 3. Estrutura do Repositório
 
 ```
-Core/
+Foundation/
 ├── .agents/                   # Governança e runbooks locais de IA
 ├── .githooks/                 # Quality gates de pre-commit e commit-msg
 ├── .github/                   # Workflows de CI
@@ -40,7 +40,7 @@ Core/
 ├── LICENSE                    # Licença MIT
 ├── Makefile                   # Orquestrador POSIX silencioso
 ├── PRINCIPLES.md              # 18 Princípios de Engenharia adaptados
-└── README.md                  # Apresentação executiva do Core Hub
+└── README.md                  # Apresentação executiva do Foundation Hub
 ```
 
 ---

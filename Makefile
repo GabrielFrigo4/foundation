@@ -4,7 +4,7 @@
 MAKEFLAGS += --no-print-directory -s
 
 # ----------------------------------------------------------------
-# Makefile: Core Hub Orchestrator
+# Makefile: Foundation Hub Orchestrator
 # ----------------------------------------------------------------
 
 .PHONY: help clone pull status test audit format hooks ci
@@ -17,13 +17,13 @@ REPOS = Sysutils Library "Raw Text"
 help:
 	cmd() { printf "    \033[36mmake %-20s\033[0m %s\n" "$$1" "$$2"; }; \
 	sec() { printf "\n  \033[1;33m%s\033[0m\n" "$$1"; }; \
-	printf "\n  \033[1;37mCore Hub — Orquestrador do Núcleo do Ecossistema\033[0m\n"; \
-	printf "  =======================================================\n"; \
+	printf "\n  \033[1;37mFoundation Hub — Orquestrador do Núcleo do Ecossistema\033[0m\n"; \
+	printf "  ============================================================\n"; \
 	sec "Sincronização & Submódulos:"; \
 	cmd "clone"          "Inicializa e atualiza todos os submódulos recursivamente"; \
 	cmd "pull"           "Atualiza todos os submódulos com seus remotos no GitHub"; \
 	sec "Diagnóstico & Status:"; \
-	cmd "status"         "Exibe status Git resumido dos submódulos do Core"; \
+	cmd "status"         "Exibe status Git resumido dos submódulos do Foundation"; \
 	cmd "hooks"          "Configura e aplica permissões canônicas em .githooks"; \
 	sec "Qualidade & Testes:"; \
 	cmd "test"           "Valida sintaxe dos scripts de shell e submódulos"; \
@@ -36,7 +36,7 @@ help:
 ### SUBMODULES ORCHESTRATION
 ### ================================
 clone:
-	echo "📦 Inicializando submódulos do Core..."
+	echo "📦 Inicializando submódulos do Foundation..."
 	git submodule update --init --recursive
 	echo "✅ Submódulos inicializados com sucesso!"
 
@@ -46,7 +46,7 @@ pull:
 	echo "✅ Submódulos sincronizados!"
 
 status:
-	echo "📊 Status dos Submódulos do Core:"
+	echo "📊 Status dos Submódulos do Foundation:"
 	git submodule status
 
 ### ================================
@@ -63,7 +63,7 @@ test:
 	echo "✅ Sintaxe de scripts validada!"
 
 audit: test
-	echo "🔍 Executando auditoria nos componentes do Core..."
+	echo "🔍 Executando auditoria nos componentes do Foundation..."
 	if [ -f Sysutils/Makefile ]; then $(MAKE) -C Sysutils test 2> "/dev/null" || true; fi
 	echo "✅ Auditoria concluída!"
 
