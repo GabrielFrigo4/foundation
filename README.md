@@ -32,11 +32,11 @@ flowchart TD
 
 ## 🧩 Os Componentes do Foundation
 
-| Componente                    | Foco & Responsabilidade                                                        | Tecnologias Centrais    | Repositório Remoto                                                        |
-| :---------------------------- | :----------------------------------------------------------------------------- | :---------------------- | :------------------------------------------------------------------------ |
-| [**`Sysutils`**](Sysutils/)   | Suíte minimalista de ferramentas e elevação de privilégios (`rtdo`, `rtgo`)    | C99, POSIX.1-2008, Make | [`GabrielFrigo4/core-posix`](https://github.com/GabrielFrigo4/core-posix) |
-| [**`Library`**](Library/)     | Acervo atemporal e preservação digital de bibliografia essencial em computação | Markdown, LaTeX, Git    | [`GabrielFrigo4/core-tech`](https://github.com/GabrielFrigo4/core-tech)   |
-| [**`Raw Text`**](Raw%20Text/) | Base de conhecimento em texto puro, manifestos técnicos e templates            | Plain Text, POSIX Shell | [`GabrielFrigo4/raw-data`](https://github.com/GabrielFrigo4/raw-data)     |
+| Componente                  | Foco & Responsabilidade                                                        | Tecnologias Centrais    | Repositório Remoto                                                        |
+| :-------------------------- | :----------------------------------------------------------------------------- | :---------------------- | :------------------------------------------------------------------------ |
+| [**`Sysutils`**](Sysutils/) | Suíte minimalista de ferramentas e elevação de privilégios (`rtdo`, `rtgo`)    | C99, POSIX.1-2008, Make | [`GabrielFrigo4/core-posix`](https://github.com/GabrielFrigo4/core-posix) |
+| **`Library`**               | Acervo atemporal e preservação digital de bibliografia essencial em computação | Markdown, LaTeX, Git    | 🔒 Privado (`GabrielFrigo4/core-tech`)                                    |
+| **`Raw Text`**              | Base de conhecimento em texto puro, manifestos técnicos e templates            | Plain Text, POSIX Shell | 🔒 Privado (`GabrielFrigo4/raw-data`)                                     |
 
 ---
 
