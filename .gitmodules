@@ -1,0 +1,9 @@
+[submodule "Sysutils"]
+	path = Sysutils
+	url = https://github.com/GabrielFrigo4/core-posix.git
+[submodule "Library"]
+	path = Library
+	url = https://github.com/GabrielFrigo4/core-tech.git
+[submodule "Raw Text"]
+	path = Raw Text
+	url = https://github.com/GabrielFrigo4/raw-data.git
