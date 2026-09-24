@@ -15,15 +15,6 @@
 
 ---
 
-## 🎯 Grandes Épicos do Hub
+## 🎯 Backlog & Tarefas
 
-### 1. ⚙️ Sysutils: `rtdo` e `rtgo`
-
-- [ ] **Hardening de Segurança:** Auditar manipuladores de sinais e sanitização de variáveis de ambiente (`$PATH`, `$IFS`).
-- [ ] **Integração com PAM & Capsicum:** Suporte a restrição estrita de privilégios e sandboxing em FreeBSD.
-- [ ] **Testes de Regressão Automatizados:** Suíte de testes em C com simulação de privilégios.
-
-### 2. 📚 Library & Raw Text: Acervo Técnico
-
-- [ ] **Catalogação Indexada:** Manter sumário navegável de livros clássicos de algoritmos, sistemas e matemática.
-- [ ] **Hermeticidade dos Textos:** Validar que 100% dos textos mantêm conformidade com padrões POSIX / FHS.
+_Nenhuma tarefa pendente no momento._
