@@ -39,7 +39,7 @@ Foundation/
 ├── AGENTS.md                  # Este briefing de engenharia
 ├── LICENSE                    # Licença MIT
 ├── Makefile                   # Orquestrador POSIX silencioso
-├── PRINCIPLES.md              # 18 Princípios de Engenharia adaptados
+├── PRINCIPLES.md              # 22 Princípios de Engenharia adaptados
 └── README.md                  # Apresentação executiva do Foundation Hub
 ```
 
