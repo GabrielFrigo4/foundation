@@ -7,7 +7,7 @@ MAKEFLAGS += --no-print-directory -s
 # Makefile: Foundation Hub Orchestrator
 # ----------------------------------------------------------------
 
-.PHONY: help clone pull status test audit format prettier lint-md hooks ci main
+.PHONY: help clone pull status test audit format prettier lint-format hooks ci main
 
 REPOS = Sysutils Library "Raw Text"
 
@@ -30,9 +30,9 @@ help:
 	sec "Qualidade & Testes:"; \
 	cmd "test"           "Valida sintaxe dos scripts de shell e submódulos"; \
 	cmd "audit"          "Executa auditoria estática e conformidade POSIX"; \
-	cmd "format"         "Formata recursivamente arquivos (MD, JSON, YAML) com Prettier"; \
-	cmd "prettier"       "Formata recursivamente arquivos (MD, JSON, YAML) com Prettier"; \
-	cmd "lint-md"        "Valida formatação recursiva sem alterar arquivos"; \
+	cmd "format"         "Formata recursivamente arquivos (MD, JSON, YAML, HTML, CSS) com Prettier"; \
+	cmd "prettier"       "Formata recursivamente arquivos (MD, JSON, YAML, HTML, CSS) com Prettier"; \
+	cmd "lint-format"    "Valida formatação recursiva sem alterar arquivos"; \
 	cmd "ci"             "Executa pipeline completa de validação local"; \
 	echo ""
 
@@ -85,17 +85,19 @@ audit: test
 	echo "✅ Auditoria concluída!"
 
 format:
-	echo "🎨 Formatando arquivos (MD, JSON, YAML) com Prettier recursivamente..."
+	echo "🎨 Formatando arquivos (MD, JSON, YAML, HTML, CSS) com Prettier recursivamente..."
 	if command -v prettier > "/dev/null" 2>&1; then \
-		find . -type f \( -name "*.md" -o -name "*.json" -o -name "*.yml" -o -name "*.yaml" \) \
-			-not -path "*/.git/*" -not -path "*/.venv/*" -not -path "*/node_modules/*" \
-			-not -path "*/var/*" -not -path "*/tmp/*" -not -path "*/build/*" \
+		find . -type f \( -name "*.md" -o -name "*.json" -o -name "*.jsonc" -o -name "*.yml" -o -name "*.yaml" -o -name "*.html" -o -name "*.css" \) \
+			-not -path "*/OSS/*" -not -path "*/.git/*" -not -path "*/.venv/*" -not -path "*/node_modules/*" \
+			-not -path "*/var/*" -not -path "*/tmp/*" -not -path "*/build/*" -not -path "*/dist/*" \
+			-not -path "*/target/*" -not -path "*/.cache/*" \
 			-exec prettier --write {} +; \
 		echo "✅ Todos os arquivos do Foundation foram formatados recursivamente!"; \
 	elif command -v npx > "/dev/null" 2>&1; then \
-		find . -type f \( -name "*.md" -o -name "*.json" -o -name "*.yml" -o -name "*.yaml" \) \
-			-not -path "*/.git/*" -not -path "*/.venv/*" -not -path "*/node_modules/*" \
-			-not -path "*/var/*" -not -path "*/tmp/*" -not -path "*/build/*" \
+		find . -type f \( -name "*.md" -o -name "*.json" -o -name "*.jsonc" -o -name "*.yml" -o -name "*.yaml" -o -name "*.html" -o -name "*.css" \) \
+			-not -path "*/OSS/*" -not -path "*/.git/*" -not -path "*/.venv/*" -not -path "*/node_modules/*" \
+			-not -path "*/var/*" -not -path "*/tmp/*" -not -path "*/build/*" -not -path "*/dist/*" \
+			-not -path "*/target/*" -not -path "*/.cache/*" \
 			-exec npx --yes prettier --write {} +; \
 		echo "✅ Todos os arquivos do Foundation foram formatados recursivamente!"; \
 	else \
@@ -104,23 +106,25 @@ format:
 
 prettier: format
 
-lint-md:
-	echo "🔍 Validando formatação (MD, JSON, YAML) com Prettier..."
+lint-format:
+	echo "🔍 Validando formatação (MD, JSON, YAML, HTML, CSS) com Prettier..."
 	if command -v prettier > "/dev/null" 2>&1; then \
-		find . -type f \( -name "*.md" -o -name "*.json" -o -name "*.yml" -o -name "*.yaml" \) \
-			-not -path "*/.git/*" -not -path "*/.venv/*" -not -path "*/node_modules/*" \
-			-not -path "*/var/*" -not -path "*/tmp/*" -not -path "*/build/*" \
+		find . -type f \( -name "*.md" -o -name "*.json" -o -name "*.jsonc" -o -name "*.yml" -o -name "*.yaml" -o -name "*.html" -o -name "*.css" \) \
+			-not -path "*/OSS/*" -not -path "*/.git/*" -not -path "*/.venv/*" -not -path "*/node_modules/*" \
+			-not -path "*/var/*" -not -path "*/tmp/*" -not -path "*/build/*" -not -path "*/dist/*" \
+			-not -path "*/target/*" -not -path "*/.cache/*" \
 			-exec prettier --check {} +; \
 		echo "✅ Formatação 100% em conformidade!"; \
 	elif command -v npx > "/dev/null" 2>&1; then \
-		find . -type f \( -name "*.md" -o -name "*.json" -o -name "*.yml" -o -name "*.yaml" \) \
-			-not -path "*/.git/*" -not -path "*/.venv/*" -not -path "*/node_modules/*" \
-			-not -path "*/var/*" -not -path "*/tmp/*" -not -path "*/build/*" \
+		find . -type f \( -name "*.md" -o -name "*.json" -o -name "*.jsonc" -o -name "*.yml" -o -name "*.yaml" -o -name "*.html" -o -name "*.css" \) \
+			-not -path "*/OSS/*" -not -path "*/.git/*" -not -path "*/.venv/*" -not -path "*/node_modules/*" \
+			-not -path "*/var/*" -not -path "*/tmp/*" -not -path "*/build/*" -not -path "*/dist/*" \
+			-not -path "*/target/*" -not -path "*/.cache/*" \
 			-exec npx --yes prettier --check {} +; \
 		echo "✅ Formatação 100% em conformidade!"; \
 	else \
 		echo "ℹ️ Prettier não instalado; pulando validação."; \
 	fi
 
-ci: test lint-md status
+ci: test lint-format status
 	echo "✅ Pipeline local aprovada!"
