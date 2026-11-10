@@ -7,7 +7,7 @@ MAKEFLAGS += --no-print-directory -s
 # Makefile: Foundation Hub Orchestrator
 # ----------------------------------------------------------------
 
-.PHONY: help clone pull status test audit format prettier lint-format hooks ci main clean
+.PHONY: help clone pull upgit status test audit format prettier lint-format hooks ci main clean
 
 REPOS = Sysutils Library "Raw Text"
 
@@ -24,6 +24,7 @@ help:
 	cmd "clone"          "Inicializa e atualiza todos os submódulos recursivamente"; \
 	cmd "main"           "Alterna todos os submódulos clonados para a branch main"; \
 	cmd "pull"           "Atualiza todos os submódulos com seus remotos no GitHub"; \
+	cmd "upgit"          "Atualiza todos os repositórios Git encontrados recursivamente"; \
 	sec "Diagnóstico & Status:"; \
 	cmd "status"         "Exibe status Git resumido dos submódulos do Foundation"; \
 	cmd "hooks"          "Configura e aplica permissões canônicas em .githooks"; \
@@ -64,6 +65,18 @@ pull: main
 	git submodule update --remote --merge
 	echo "✅ Submódulos sincronizados!"
 
+upgit:
+	echo "🔄 Atualizando repositórios Git..."
+	find . \( -type d -name ".git" -print -prune \) -o \( -type f -name ".git" -print \) 2> "/dev/null" | awk '{ n=split($$0, a, "/"); print n, $$0 }' | sort -n -k1,1 | cut -d' ' -f2- | while read -r g; do \
+		d="$$(dirname "$$g")"; \
+		echo "# ----------------------------------------------------------------"; \
+		echo "# $$d"; \
+		echo "# ----------------------------------------------------------------"; \
+		git -C "$$d" pull --ff-only 2> "/dev/null" || git -C "$$d" pull || echo "⚠️  Falha ao atualizar $$d"; \
+		echo ""; \
+	done
+	echo "✅ Repositórios Git atualizados!"
+
 status:
 	echo "📊 Status dos Submódulos do Foundation:"
 	git submodule status
@@ -83,7 +96,7 @@ test:
 
 audit: test
 	echo "🔍 Executando auditoria nos componentes do Foundation..."
-	if [ -f Sysutils/Makefile ]; then $(MAKE) -C Sysutils test 2> "/dev/null" || true; fi
+	if [ -f Sysutils/Makefile ]; then (cd Sysutils && $(MAKE) test) 2> "/dev/null" || true; fi
 	echo "✅ Auditoria concluída!"
 
 format:
@@ -138,7 +151,7 @@ clean:
 	echo "🧹 Limpando artefatos, caches e ambientes virtuais no Foundation..."
 	for r in $(REPOS); do \
 		if [ -e "$$r/Makefile" ]; then \
-			$(MAKE) -C "$$r" clean 2> "/dev/null" || true; \
+			(cd "$$r" && $(MAKE) clean) 2> "/dev/null" || true; \
 		fi; \
 	done
 	rm -rf .venv
