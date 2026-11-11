@@ -42,12 +42,16 @@ flowchart TD
 
 ## 🚀 Como Obter e Operar
 
+Clonagem recursiva:
+
 ```sh
-# Clonagem completa com todos os submódulos
 git clone --recursive "https://github.com/GabrielFrigo4/foundation.git"
 cd foundation
+```
 
-# Ou clonagem simples seguida de inicialização
+Clonagem simples seguida de inicialização via Makefile:
+
+```sh
 git clone "https://github.com/GabrielFrigo4/foundation.git"
 cd foundation
 make clone
@@ -56,9 +60,9 @@ make clone
 ### Operações com o Makefile
 
 ```sh
-make status    # Inspeciona o estado Git de todos os submódulos
-make pull      # Atualiza os submódulos com as branches principais
-make test      # Executa verificações e quality gates locais
+make status
+make pull
+make test
 ```
 
 ---
