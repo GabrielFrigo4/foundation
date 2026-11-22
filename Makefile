@@ -45,7 +45,7 @@ help:
 clone:
 	echo "📦 Inicializando submódulos do Foundation..."
 	git submodule update --init --recursive
-	echo "✅ Submódulos inicializados com sucesso!\n"
+	printf "✅ Submódulos inicializados com sucesso!\n\n"
 	$(MAKE) main
 
 main:
@@ -58,7 +58,7 @@ main:
 			echo "  ⏭️  $$r: não clonado, pulando."; \
 		fi; \
 	done
-	echo "✅ Submódulos ativos configurados na branch main!\n"
+	printf "✅ Submódulos ativos configurados na branch main!\n\n"
 
 pull: main
 	echo "🔄 Sincronizando submódulos com os branches remotos..."
@@ -91,12 +91,39 @@ hooks:
 
 test:
 	echo "🧪 Validando integridade e scripts shell..."
-	find . -name "*.sh" -not -path "*/.git/*" -exec sh -n {} +
+	find . -type f -name "*.sh" -not -path "*/.git/*" -not -path "*/OSS/*" -not -path "*/.venv/*" -not -path "*/node_modules/*" -exec sh -n {} +
+	if [ -d ".githooks" ]; then \
+		find .githooks -type f -exec sh -n {} +; \
+	fi
 	echo "✅ Sintaxe de scripts validada!"
 
 audit: test
 	echo "🔍 Executando auditoria nos componentes do Foundation..."
 	if [ -f Sysutils/Makefile ]; then (cd Sysutils && $(MAKE) test) 2> "/dev/null" || true; fi
+	git submodule status | while read -r sha path rest; do \
+		case "$$sha" in \
+			U*) echo "❌ Conflito no submódulo: $$path" >&2; exit 1 ;; \
+		esac; \
+	done
+	if [ -d ".githooks" ]; then \
+		for h in .githooks/*; do \
+			if [ -f "$$h" ] && [ ! -x "$$h" ]; then \
+				echo "❌ Gancho sem permissão executável: $$h" >&2; \
+				exit 1; \
+			fi; \
+		done; \
+	fi
+	_tmp=$$(git ls-files | grep -E '(__pycache__/|\.pyc$$|\.DS_Store$$|\.bak$$|\.swp$$|\.tmp$$)' || true); \
+	if [ -n "$$_tmp" ]; then \
+		echo "❌ Arquivos temporários rastreados: $$_tmp" >&2; \
+		exit 1; \
+	fi
+	git ls-files | while IFS= read -r p; do \
+		if [ -f "$$p" ] && grep -q -E '^(<<<<<<< |>>>>>>> )' "$$p" 2> "/dev/null"; then \
+			echo "❌ Marcador de conflito encontrado em: $$p" >&2; \
+			exit 1; \
+		fi; \
+	done
 	echo "✅ Auditoria concluída!"
 
 format:
@@ -141,7 +168,7 @@ lint-format:
 		echo "ℹ️ Prettier não instalado; pulando validação."; \
 	fi
 
-ci: test lint-format status
+ci: test audit lint-format status
 	echo "✅ Pipeline local aprovada!"
 
 ### ================================
